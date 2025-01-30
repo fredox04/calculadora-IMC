@@ -2,12 +2,13 @@ public class Paciente{
     double altura;
     double peso;
     double IMC;
+    String diagnostico;
 
     Paciente(double altura, double peso){
         this.altura = altura;
         this.peso = peso;
         this.IMC = calcularIMC(peso, altura);
-        diagnostico(IMC);
+        this.diagnostico = dar_diagnostico(IMC);
     }
 
     double calcularIMC(double peso, double altura){
@@ -16,30 +17,30 @@ public class Paciente{
         return IMC;
     }
 
-    void diagnostico(double IMC){
+    String dar_diagnostico(double IMC){
         if (IMC < 16){
-            System.out.println("Baixo peso muito grave \n");
+            return "Baixo peso muito grave";
         }
         else if (IMC >= 16 && IMC < 17){
-            System.out.println("Baixo peso grave \n");
+            return "Baixo peso grave";
         }
         else if (IMC >= 17 && IMC < 18.5){
-            System.out.println("Baixo peso \n");
+            return "Baixo peso";
         }
         else if (IMC >= 18.5 && IMC < 25){
-            System.out.println("Peso normal \n");
+            return "Peso normal";
         }
         else if (IMC >= 25 && IMC < 30){
-            System.out.println("Sobrepeso \n");
+            return "Sobrepeso";
         }
         else if (IMC >= 30 && IMC < 35){
-            System.out.println("Obesidade grau I \n");
+            return "Obesidade grau I";
         }
         else if (IMC >= 35 && IMC < 40){
-            System.out.println("Obesidade grau II \n");
+            return "Obesidade grau II";
         }
         else{
-            System.out.println("Obesidade grau III \n");
+            return "Obesidade grau III";
         }
     }
 }
