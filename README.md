@@ -10,62 +10,74 @@ O programa contém uma classe `Paciente` que recebe `altura` e `peso` no constru
 ├── App.java └── Paciente.java
 
 - **App.java**: Classe principal que instancia os objetos `Paciente` e executa o programa.
-- **Paciente.java**: Classe responsável pelo cálculo do IMC e exibição do diagnóstico.
+- **Paciente.java**: Classe responsável pelo cálculo do IMC e por dar o diagnóstico.
 
 ## Código
 
 ### Paciente.java
 
 ```java
-public class Paciente {
+public class Paciente{
     double altura;
     double peso;
     double IMC;
+    String diagnostico;
 
-    Paciente(double altura, double peso) {
+    Paciente(double altura, double peso){
         this.altura = altura;
         this.peso = peso;
         this.IMC = calcularIMC(peso, altura);
-        diagnostico(IMC);
+        this.diagnostico = dar_diagnostico(IMC);
     }
 
-    double calcularIMC(double peso, double altura) {
-        double IMC = peso / (altura * altura);
-        // Formata a saída para duas casas decimais
-        System.out.printf("IMC: %.2f%n", IMC);
+    double calcularIMC(double peso, double altura){
+        double IMC = peso/(altura*altura);
+        System.out.printf("IMC: %.2f \n", IMC);
         return IMC;
     }
 
-    void diagnostico(double IMC) {
-        if (IMC < 16) {
-            System.out.println("Baixo peso muito grave \n");
-        } else if (IMC >= 16 && IMC < 17) {
-            System.out.println("Baixo peso grave \n");
-        } else if (IMC >= 17 && IMC < 18.5) {
-            System.out.println("Baixo peso \n");
-        } else if (IMC >= 18.5 && IMC < 25) {
-            System.out.println("Peso normal \n");
-        } else if (IMC >= 25 && IMC < 30) {
-            System.out.println("Sobrepeso \n");
-        } else if (IMC >= 30 && IMC < 35) {
-            System.out.println("Obesidade grau I \n");
-        } else if (IMC >= 35 && IMC < 40) {
-            System.out.println("Obesidade grau II \n");
-        } else {
-            System.out.println("Obesidade grau III \n");
+    String dar_diagnostico(double IMC){
+        if (IMC < 16){
+            return "Baixo peso muito grave";
+        }
+        else if (IMC >= 16 && IMC < 17){
+            return "Baixo peso grave";
+        }
+        else if (IMC >= 17 && IMC < 18.5){
+            return "Baixo peso";
+        }
+        else if (IMC >= 18.5 && IMC < 25){
+            return "Peso normal";
+        }
+        else if (IMC >= 25 && IMC < 30){
+            return "Sobrepeso";
+        }
+        else if (IMC >= 30 && IMC < 35){
+            return "Obesidade grau I";
+        }
+        else if (IMC >= 35 && IMC < 40){
+            return "Obesidade grau II";
+        }
+        else{
+            return "Obesidade grau III";
         }
     }
 }
+
 ```
 ### App.java
 ```
 public class App {
     public static void main(String[] args) throws Exception {
         Paciente A = new Paciente(1.75, 76.50);
+        System.out.println("Diagnostico: " + A.diagnostico + "\n");
         Paciente B = new Paciente(1.68, 83.90);
+        System.out.println("Diagnostico: " + B.diagnostico + "\n");
         Paciente C = new Paciente(1.78, 67.00);
+        System.out.println("Diagnostico: " + C.diagnostico + "\n");
     }
 }
+
 ```
 Ao executar, você verá na tela o valor do IMC de cada paciente, formatado com duas casas decimais, seguido de seu respectivo diagnóstico.
 
